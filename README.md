@@ -29,5 +29,5 @@ blob_name_upload = 'destiny_filename'
 
 After complet this requisites you need to execute the code
 ```
-python python_streaming
+python python_streaming.py
 ```
