@@ -3,7 +3,6 @@ from google.resumable_media.requests import ResumableUpload
 import google.auth
 import google.auth.transport.requests as tr_requests
 import io
-import zipfile
 from StringIO import StringIO
 
 ro_scope = u'https://www.googleapis.com/auth/devstorage.read_only'
