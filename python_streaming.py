@@ -33,9 +33,15 @@ stream = io.BytesIO()
 download = ChunkedDownload(media_url, chunk_size, stream)
 upload = ResumableUpload(upload_url, chunk_size)
 
+data = []
 while download.finished != True:
-	response = download.consume_next_chunk(transport)
-	data = response.content.decode("utf-8").replace(',','|')
-	stream_upload = io.BytesIO(bytes(data, 'UTF-8'))
-	metadata = {u'name': blob_name_upload}
-	reponse_upload = upload.initiate(transport, stream_upload, metadata, content_type)
+ response = download.consume_next_chunk(transport)
+ data.append(response.content.decode("utf-8").replace(',','|'))
+
+new_data = ''.join(data)
+stream_upload = io.BytesIO(bytes(new_data, 'UTF-8'))
+metadata = {u'name': blob_name_upload}
+reponse_upload = upload.initiate(transport, stream_upload, metadata, content_type)
+
+while upload.finished != True:
+ upload.transmit_next_chunk(transport)
