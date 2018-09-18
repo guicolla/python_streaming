@@ -1,8 +1,8 @@
 # python_streaming
 This project is a file streaming using a google cloud storage to read and write files by streaming
 
-##Getting Started
-###Prerequisites
+## Getting Started
+### Prerequisites
 * Python 2.7+
 * google-resumable-media
 * google-auth
